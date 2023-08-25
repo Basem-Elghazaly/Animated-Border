@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+$soft-dark: #333;
+body {
+  background-color: $soft-dark;
+}
+@mixin centering {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+%radius {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.circles {
+  @include centering;
+  height: 100vh;
+  .box {
+    width: 50%;
+    height: 50%;
+    @include centering;
+  }
+  .circle {
+    @extend %radius;
+    width: 60px;
+    height: 60px;
+    @include centering;
+    &.one {
+      background-color: rgb(228, 64, 64);
+      animation-delay: -0.25s;
+    }
+    &.two {
+      background-color: rgb(98, 98, 195);
+      animation-delay: -0.5s;
+    }
+    &.three {
+      background-color: yellow;
+      animation-delay: -0.75s;
+    }
+    &.four {
+      background-color: violet;
+      animation-delay: -1s;
+    }
+    animation: animate 0.8s ease-in-out infinite alternate;
+    -webkit-animation: animate 0.8s ease-in-out infinite alternate;
+  }
+}
+
+@mixin transform($number, $number) {
+  transform: translate($number, $number);
+  -webkit-transform: translate($number, $number);
+  -moz-transform: translate($number, $number);
+  -ms-transform: translate($number, $number);
+  -o-transform: translate($number, $number);
+}
+
+@keyframes animate {
+  0% {
+    @include transform(-20px, -30px);
+  }
+  100% {
+    @include transform(10px, 10px);
+  }
+}
